@@ -18,6 +18,7 @@ interface Tool {
 }
 
 const tools: Tool[] = [
+  { name: '图片压缩', desc: 'WebP转换器', icon: 'image', tag: '设计', accent: '#38bdf8', ready: true },
   { name: 'Markdown 编辑器', desc: '实时预览的在线 Markdown 编辑工具', icon: 'md', tag: '文档', accent: '#22d3ee', ready: true },
   { name: 'JSON 格式化', desc: '高亮、压缩与校验你的 JSON 数据', icon: 'braces', tag: '开发', accent: '#a78bfa', ready: false },
   { name: '时间戳转换', desc: 'Unix 秒/毫秒与日期互转', icon: 'clock', tag: '开发', accent: '#34d399', ready: false },
@@ -28,7 +29,6 @@ const tools: Tool[] = [
   { name: '颜色拾取器', desc: 'HEX / RGB / HSL 互转与预览', icon: 'palette', tag: '设计', accent: '#f87171', ready: false },
   { name: '文本对比', desc: '逐行 diff 差异高亮', icon: 'diff', tag: '实用', accent: '#c084fc', ready: false },
   { name: '单位换算', desc: '长度 / 重量 / 温度等常用换算', icon: 'scale', tag: '实用', accent: '#4ade80', ready: false },
-  { name: '图片压缩', desc: '浏览器端无损压缩图片', icon: 'image', tag: '设计', accent: '#38bdf8', ready: false },
   { name: 'URL 编解码', desc: 'Encode / Decode 中文与特殊字符', icon: 'link', tag: '开发', accent: '#fb7185', ready: false },
 ]
 
@@ -44,7 +44,11 @@ const filteredTools = computed(() => {
 
 function openTool(tool: Tool) {
   if (tool.ready) {
-    navigateTo('/markdown-editor')
+    if (tool.name === 'Markdown 编辑器') {
+      navigateTo('/markdown-editor')
+    } else if (tool.name === '图片压缩') {
+      navigateTo('/webp-transfer')
+    }
   } else {
     toast.add({
       title: '敬请期待',
@@ -108,7 +112,7 @@ function iconPath(name: string): string {
             v-model="search"
             size="lg"
             placeholder="搜索工具，例如 Markdown、JSON、二维码…"
-            class="w-full"
+            class="w-full bg-slate-800/60 border-slate-700 text-slate-100 placeholder:text-slate-500"
           >
             <template #leading>
               <svg class="w-4 h-4 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -138,7 +142,7 @@ function iconPath(name: string): string {
           <UCard
             v-for="t in filteredTools"
             :key="t.name"
-            class="cursor-pointer group transition-all duration-300 hover:-translate-y-1.5"
+            class="cursor-pointer group transition-all duration-300 hover:-translate-y-1.5 bg-slate-800/60 border-slate-700/50 text-slate-100"
             :style="{ '--accent': t.accent }"
             @click="openTool(t)"
           >
