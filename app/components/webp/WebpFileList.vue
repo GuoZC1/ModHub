@@ -190,9 +190,5 @@ function clearAll() {
         @download="downloadOne"
       />
     </ul>
-
-    <footer class="text-center text-slate-500 text-xs py-3 flex-shrink-0">
-      纯前端实现 · 基于浏览器 <code class="bg-slate-700 px-1.5 py-0.5 rounded text-slate-300">Canvas</code> 编码 · 全程浏览器本地处理，图片不上传
-    </footer>
   </div>
 </template>
