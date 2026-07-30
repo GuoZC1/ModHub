@@ -139,42 +139,41 @@ function iconPath(name: string): string {
         </div>
 
         <div v-if="filteredTools.length" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <UCard
+          <div
             v-for="t in filteredTools"
             :key="t.name"
-            class="cursor-pointer group transition-all duration-300 hover:-translate-y-1.5 bg-slate-800/60 border-slate-700/50 text-slate-100"
+            class="cursor-pointer group transition-all duration-300 hover:-translate-y-1.5 bg-slate-800/60 border border-slate-700/50 text-slate-100 rounded-xl p-4"
             :style="{ '--accent': t.accent }"
             @click="openTool(t)"
           >
-            <template #header>
-              <div class="flex items-center justify-between">
-                <span
-                  class="inline-grid place-items-center w-11 h-11 rounded-xl"
-                  :style="{ color: t.accent, background: 'color-mix(in srgb, ' + t.accent + ' 14%, transparent)', border: '1px solid color-mix(in srgb, ' + t.accent + ' 30%, transparent)' }"
-                >
-                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path :d="iconPath(t.icon)" />
-                  </svg>
-                </span>
-                <div class="flex items-center gap-2">
-                  <UBadge v-if="!t.ready" color="neutral" variant="subtle" size="xs">敬请期待</UBadge>
-                  <UBadge color="primary" variant="outline" size="xs">{{ t.tag }}</UBadge>
-                </div>
+            <!-- Header -->
+            <div class="flex items-center justify-between mb-3">
+              <span
+                class="inline-grid place-items-center w-11 h-11 rounded-xl"
+                :style="{ color: t.accent, background: 'color-mix(in srgb, ' + t.accent + ' 14%, transparent)', border: '1px solid color-mix(in srgb, ' + t.accent + ' 30%, transparent)' }"
+              >
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path :d="iconPath(t.icon)" />
+                </svg>
+              </span>
+              <div class="flex items-center gap-2">
+                <UBadge v-if="!t.ready" color="neutral" variant="subtle" size="xs">敬请期待</UBadge>
+                <UBadge color="primary" variant="outline" size="xs">{{ t.tag }}</UBadge>
               </div>
-            </template>
+            </div>
 
-            <div>
+            <!-- Content -->
+            <div class="mb-3">
               <h3 class="font-semibold text-base font-black">{{ t.name }}</h3>
               <p class="text-sm text-gray-400 mt-1.5 leading-relaxed">{{ t.desc }}</p>
             </div>
 
-            <template #footer>
-              <span
-                class="text-sm font-semibold opacity-0 -translate-x-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
-                :style="{ color: t.accent }"
-              >{{ t.ready ? '进入 →' : '敬请期待' }}</span>
-            </template>
-          </UCard>
+            <!-- Footer -->
+            <span
+              class="text-sm font-semibold opacity-0 -translate-x-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
+              :style="{ color: t.accent }"
+            >{{ t.ready ? '进入 →' : '敬请期待' }}</span>
+          </div>
         </div>
 
         <p v-else class="text-center text-gray-500 py-12">没有匹配「{{ search }}」的工具，换个关键词试试 ✦</p>
