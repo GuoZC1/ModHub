@@ -27,7 +27,7 @@
         <li
           v-for="option in options"
           :key="option.value"
-          class="cursor-pointer truncate px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-primary/20 hover:text-primary"
+          class="cursor-pointer truncate px-3 py-2 text-sm text-white transition-colors hover:bg-primary/20 hover:text-primary"
           :class="{ 'bg-primary/20 text-primary': modelValue === option.value }"
           @click="handleSelect(option)"
         >
