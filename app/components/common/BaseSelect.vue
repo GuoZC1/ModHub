@@ -2,7 +2,7 @@
   <div class="custom-select relative w-full" ref="selectContainer">
     <button
       type="button"
-      class="relative w-full rounded-lg border bg-white px-4 py-2 text-left text-sm text-slate-700 outline-none transition-colors focus:border-transparent focus:ring-2 focus:ring-primary/30"
+      class="relative w-full rounded-lg border bg-slate-900 px-4 py-2 text-left text-sm text-slate-700 outline-none transition-colors focus:border-transparent focus:ring-2 focus:ring-primary/30"
       :class="isOpen ? 'border-primary ring-2 ring-primary/20' : 'border-gray-400'"
       @click="toggleDropdown"
     >
@@ -21,14 +21,14 @@
 
     <div
       v-if="isOpen"
-      class="absolute z-50 mt-1 w-full overflow-hidden rounded-md border border-slate-200 bg-white shadow-lg"
+      class="absolute z-50 mt-1 w-full overflow-hidden rounded-md border border-slate-200 bg-slate-900 shadow-lg"
     >
       <ul class="max-h-56 overflow-y-auto py-1">
         <li
           v-for="option in options"
           :key="option.value"
-          class="cursor-pointer truncate px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-[#FFF2F3] hover:text-primary"
-          :class="{ 'bg-[#FFF2F3] text-primary': modelValue === option.value }"
+          class="cursor-pointer truncate px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-primary/20 hover:text-primary"
+          :class="{ 'bg-primary/20 text-primary': modelValue === option.value }"
           @click="handleSelect(option)"
         >
           {{ option.label }}
