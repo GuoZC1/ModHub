@@ -49,14 +49,11 @@ watch([format, quality, maxWidth, maxHeight, stripMeta], emitChange, { immediate
     <div class="space-y-5">
       <div class="field">
         <label class="block text-xs text-slate-400 font-semibold mb-2">输出格式</label>
-        <select
+        <CommonBaseSelect
           v-model="format"
-          class="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2.5 text-sm text-slate-200 outline-none focus:border-primary-500"
-        >
-          <option v-for="f in formats" :key="f.value" :value="f.value">
-            {{ f.label }}
-          </option>
-        </select>
+          :options="formats"
+          class="w-full"
+        />
       </div>
 
       <div class="field">
